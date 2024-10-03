@@ -4,58 +4,50 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          leading: const Icon(
-            Icons.menu,
-            color: Colors.white,
-          ),
-          title: const Text(
-            'App Bar',
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          actions: <Widget>[
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                )),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.exit_to_app,
-                  color: Colors.white,
-                )),
-          ],
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: <Color>[
-                  Color(0xff0096ff),
-                  Color(0xff6610f2),
-                ],
-                begin: FractionalOffset.topLeft,
-                end: FractionalOffset.bottomRight,
-              ),
-              image: DecorationImage(
-                image: AssetImage('assets/pattern.png'),
-                fit: BoxFit.cover,
-                repeat: ImageRepeat.repeat,
-              ),
-            ),
-          ),
+          title: const Text('Textfield Widget'),
         ),
-        body: const Center(
-          child: Text('Hello World'),
+        body: Center(
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextField(
+                  maxLength: 10,
+                  controller: controller,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter your name',
+                    labelText: 'Name',
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) => setState(() {}),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    controller.text,
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
