@@ -34,6 +34,7 @@ class _MyAppState extends State<MyApp> {
                     hintText: 'Enter your name',
                     labelText: 'Name',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.person),
                   ),
                   onChanged: (value) => setState(() {}),
                 ),
