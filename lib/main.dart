@@ -11,52 +11,37 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          leading: const Icon(
-            Icons.menu,
-            color: Colors.white,
-          ),
-          title: const Text(
-            'App Bar',
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          actions: <Widget>[
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                )),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.exit_to_app,
-                  color: Colors.white,
-                )),
-          ],
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: <Color>[
-                  Color(0xff0096ff),
-                  Color(0xff6610f2),
-                ],
-                begin: FractionalOffset.topLeft,
-                end: FractionalOffset.bottomRight,
-              ),
-              image: DecorationImage(
-                image: AssetImage('assets/pattern.png'),
-                fit: BoxFit.cover,
-                repeat: ImageRepeat.repeat,
-              ),
+        backgroundColor: Colors.green,
+        body: Center(
+          // Menggunakan Center untuk menempatkan konten di tengah
+          child: Container(
+            margin: const EdgeInsets.all(10),
+            child: ListView(
+              shrinkWrap:
+                  true, // Menambahkan shrinkWrap untuk menyesuaikan tinggi ListView
+              children: <Widget>[
+                cardList(Icons.account_circle, 'One-line with leading icon'),
+                cardList(Icons.android, 'One-line with leading icon'),
+                cardList(Icons.abc_outlined, 'One-line with leading icon'),
+                cardList(Icons.ios_share, 'One-line with leading icon'),
+                cardList(
+                    Icons.access_alarms_outlined, 'One-line with leading icon')
+              ],
             ),
           ),
         ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
+      ),
+    );
+  }
+
+  static Card cardList(IconData icon, String text) {
+    return Card(
+      elevation: 5,
+      child: Row(
+        children: <Widget>[
+          Container(margin: const EdgeInsets.all(7), child: Icon(icon)),
+          Text(text)
+        ],
       ),
     );
   }
